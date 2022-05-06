@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://tetiana1192.github.io/goit-js-hw-08-1",
+  "homepage": "https://tetiana1192.github.io/goit-js-hw-08-1/src",
   "scripts": {
     "dev": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /goit-js-hw-08-1/"
