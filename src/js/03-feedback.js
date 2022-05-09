@@ -13,22 +13,21 @@ refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
 
 populateTextarea();
 
+function onFormSubmit(evt) {
+  evt.preventDefault();
+  evt.currentTarget.reset();
+  localStorage.removeItem(STORAGE_KEY);
+
+}
 
 function onTextareaInput(evt) {
   const message = evt.target.value;
-
-  localStorage.setItem(STORAGE_KEY, message);
+  // localStorage.setItem(STORAGE_KEY, message);
+  localStorage.setItem("message", JSON.stringify(message))
 }
 
 
-function onFormSubmit(evt) {
-  evt.preventDefault();
 
-  
-  evt.currentTarget.reset();
-  localStorage.removeItem(STORAGE_KEY);
-}
-    
 
 const formData = {};
 
@@ -37,18 +36,19 @@ refs.form.addEventListener('input', e => {
 // console.log(e.target.value);
 
 formData[e.target.name] = e.target.value;
-
+localStorage.setItem("formData", JSON.stringify(formData))
 console.log(formData);
 });
 
 
-
-
 function populateTextarea() {
-  const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
+   const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
   if (savedMessage) {
-    formEl.elements.email.value = savedMessage.email || '';
-    formEl.elements.message.value = savedMessage.message || '';
+    refs.textarea.value = savedMessage;
+  
   }
 }
+
+
+

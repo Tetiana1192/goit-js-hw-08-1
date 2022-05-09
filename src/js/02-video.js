@@ -12,6 +12,11 @@ const player = new Vimeo.Player(iframe);
       localStorage.setItem(LOCALSTORAGE_KEY, data.seconds); 
     });
 
+
+    const onPlay = function (data) {
+  localStorage.setItem(LOCALSTORAGE_KEY, data.seconds);
+};
+
   player.on('timeupdate', throttle(onPlay, 2000));
     
 
