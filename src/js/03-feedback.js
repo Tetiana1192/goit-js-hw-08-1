@@ -37,7 +37,7 @@ function initForm() {
     // щоб розпарсити потрібно зробити перевірку ,якщо фільтри є то зними будемо працювати ,якщо нема то не будем  
   if (persistedFeedBack) {
     persistedFeedBack = JSON.parse(persistedFeedBack);  //конструкція трай 
-    console.log(persistedFeedBack);
+    // console.log(persistedFeedBack);
     Object.entries(persistedFeedBack).forEach(([name, value]) => {    //взяли всі його входження
       // selectedFeedBack[name] = value;    
       feedBackForm.elements[name].value = value; 
