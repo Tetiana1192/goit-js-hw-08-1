@@ -23,7 +23,7 @@ feedBackForm.addEventListener('submit', evt => {
   // console.log(selectedFeedBack);
   // потрібно зберігати зміни в локальному сховащі ,потрібно зробити об`єкт, 
   // localStorage.setItem('selectedFeedBack', JSON.stringify(selectedFeedBack));
-  const persistedFeedBack = localStorage.getItem(STORAGE_KEY);    // беремо з локасторіджа що збережено 
+  let persistedFeedBack = localStorage.getItem(STORAGE_KEY);    // беремо з локасторіджа що збережено 
     persistedFeedBack = persistedFeedBack ? JSON.parse(persistedFeedBack) : {};  //якщо там щось є то парсим його ,якщо нічого нема то фільтри починаються з пустого об`єкта 
     persistedFeedBack[evt.target.name] = evt.target.value;   //зберігаємо або добавляємо значення 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedFeedBack));
