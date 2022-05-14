@@ -1,8 +1,21 @@
 import throttle from 'lodash.throttle';
 
 const STORAGE_KEY = 'feedback-form-state';
-const feedBackForm = document.querySelector('.feedback-form');    //дивимося чи працює форма 
+const feedBackForm = document.querySelector('.feedback-form');   //дивимося чи працює форма
+const textarea = document.querySelector('.feedback-form  textarea');
 //  const selectedFeedBack = {};     //створюємо обьюкт 
+
+
+
+textarea.addEventListener('input', evt => {
+  throttle(onTextareaInput, 200);
+  let persistedFeedBack = localStorage.getItem(STORAGE_KEY);    // беремо з локасторіджа що збережено 
+    persistedFeedBack = persistedFeedBack ? JSON.parse(persistedFeedBack) : {};  //якщо там щось є то парсим його ,якщо нічого нема то фільтри починаються з пустого об`єкта 
+    persistedFeedBack[evt.target.name] = evt.target.value;   //зберігаємо або добавляємо значення 
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedFeedBack));
+  });
+
+
 
 initForm(); //при ініцілізації форми витянули обєкт 
 
@@ -15,7 +28,7 @@ feedBackForm.addEventListener('submit', evt => {
 });
 
 // робимо делегування на форму 
-  feedBackForm.addEventListener('change', evt => {    //вішаємо нового слухача,один обработчик вішає на всіх інпута слухача  
+  // feedBackForm.addEventListener('change', evt => {    //вішаємо нового слухача,один обработчик вішає на всіх інпута слухача  
   // console.log(evt.target.name);   // підставляємо ім`я ключа
   // console.log(evt.target.value);  // ставомо значення ключа
   
@@ -23,12 +36,12 @@ feedBackForm.addEventListener('submit', evt => {
   // console.log(selectedFeedBack);
   // потрібно зберігати зміни в локальному сховащі ,потрібно зробити об`єкт, 
   // localStorage.setItem('selectedFeedBack', JSON.stringify(selectedFeedBack));
-  let persistedFeedBack = localStorage.getItem(STORAGE_KEY);    // беремо з локасторіджа що збережено 
-    persistedFeedBack = persistedFeedBack ? JSON.parse(persistedFeedBack) : {};  //якщо там щось є то парсим його ,якщо нічого нема то фільтри починаються з пустого об`єкта 
-    persistedFeedBack[evt.target.name] = evt.target.value;   //зберігаємо або добавляємо значення 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedFeedBack));
+//   let persistedFeedBack = localStorage.getItem(STORAGE_KEY);    // беремо з локасторіджа що збережено 
+//     persistedFeedBack = persistedFeedBack ? JSON.parse(persistedFeedBack) : {};  //якщо там щось є то парсим його ,якщо нічого нема то фільтри починаються з пустого об`єкта 
+//     persistedFeedBack[evt.target.name] = evt.target.value;   //зберігаємо або добавляємо значення 
+//     localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedFeedBack));
     
-});
+// });
 
 
 //щоб зберігалися значення при перезагрузці потрібно зробити функцію 
