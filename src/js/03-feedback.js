@@ -16,6 +16,14 @@ textarea.addEventListener('input', evt => {
   });
 
 
+function onTextareaInput(event) {
+  persistedFeedBack[event.target.name] = event.target.value;
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedFeedBack));
+}
+
+
+
 
 initForm(); //при ініцілізації форми витянули обєкт 
 
@@ -54,9 +62,13 @@ function initForm() {
     Object.entries(persistedFeedBack).forEach(([name, value]) => {    //взяли всі його входження
       // selectedFeedBack[name] = value;    
       feedBackForm.elements[name].value = value; 
+      //  feedBackForm.elements[name].value = value.message;
+      
+
     });
 }
 }
+
 feedBackForm.addEventListener('reset', () => {
   localStorage.removeItem(STORAGE_KEY);
 });
