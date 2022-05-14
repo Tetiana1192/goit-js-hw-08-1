@@ -3,6 +3,7 @@ import throttle from 'lodash.throttle';
 const STORAGE_KEY = 'feedback-form-state';
 const feedBackForm = document.querySelector('.feedback-form');   //дивимося чи працює форма
 const textarea = document.querySelector('.feedback-form  textarea');
+
 //  const selectedFeedBack = {};     //створюємо обьюкт 
 
 
@@ -61,8 +62,8 @@ function initForm() {
     // console.log(persistedFeedBack);
     Object.entries(persistedFeedBack).forEach(([name, value]) => {    //взяли всі його входження
       // selectedFeedBack[name] = value;    
-      feedBackForm.elements[name].value = value; 
-      //  feedBackForm.elements[name].value = value.message;
+      feedBackForm.elements[name].value = value.email; 
+      onTextareaInput.elements[name].value = value.message;
       
 
     });
